@@ -1,48 +1,24 @@
 package dataStructure;
 
-import java.util.Arrays;
+public class LinkedList {
 
-public class LinkedList <E> {
-	private int size=0;
-	private static final int DEFAULT_CAPACITY=10;
-	private Object elements[];
-	
-	public LinkedList(){
-		elements=new Object[DEFAULT_CAPACITY];
-		
-	}
-	
-	public void add(E e){
-		if(size==elements.length){
-			ensureCapacity();
-		}
-		elements[size++]=e;
-		
-	}
-	
-	@SuppressWarnings("unchecked")
-	public E get(int i){
-		if(i>elements.length){
-			throw new IndexOutOfBoundsException("Index: "+i+" , Size "+i);
-		}
-		return (E)elements[i];
+	Object data;
+	LinkedList next = null;
+
+	public LinkedList(Object data) {
+		this.data=data;
+
 	}
 
-	private void ensureCapacity() {
-		int newSize=elements.length*2;
-		elements=Arrays.copyOf(elements, newSize);
-		
-	}
-	
-	public static void main(String[] args){
-		LinkedList l=new LinkedList();
-		
-		for(int i=0;i<=100;i++){
-			l.add(i);
+	void append(Object data) {
+		LinkedList node = new LinkedList(data);
+		LinkedList n = this;
+
+		while (n.next != null) {
+			n = n.next;
 		}
-		
-		System.out.println(l.size);
-		System.out.println(l.get(60));
+
+		n.next = node;
 	}
-	
+
 }
